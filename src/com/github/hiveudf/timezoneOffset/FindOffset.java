@@ -41,6 +41,6 @@ public class FindOffset extends UDF {
 add jar IANA_to_offset.jar
 create temporary function toOffset as 'com.github.hiveudf.timezoneOffset.FindOffset';
  
-SELECT distinct timezone, unix_timestamp(), toOffset(timezone, unix_timestamp()*1000) from table_abc;
+SELECT timezone, toOffset(timezone, unix_timestamp()*1000) from table_abc;
  
 */
