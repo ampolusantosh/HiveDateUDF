@@ -18,22 +18,22 @@ public class FindOffset extends UDF {
                      return  new DoubleWritable((double)TimeZone.getTimeZone(tz.trim()).getOffset(runDate)/(1000D*60D*60D));
               }
               catch (Exception e) {
-                     LogExceptions(LOG, "IANA to Offset: " + e);
+                     LogExceptions(LOG, e.toString());
                      return new DoubleWritable(Double.NaN);
               }
        }
       
        public static void LogExceptions(Log logger, String e)  {
-           logger.error("Invalid arguments - one or more arguments are null.");
+           logger.error("IANA to Offset : Invalid arguments - one or more arguments are null."+e);
          }
 //     Used for testing
-//     public static void main(String[] args) {
-//            FindOffset fo=new FindOffset();
-//            System.out.println("Europe/Berlin : Offset="+fo.evaluate("Europe/Berlin", System.currentTimeMillis()));
-//            System.out.println("Asia/Kolkata : Offset="+fo.evaluate("Asia/Kolkata", System.currentTimeMillis()));
-//            System.out.println("PST : Offset="+fo.evaluate("PST", System.currentTimeMillis()));
-//            System.out.println("IST : Offset="+fo.evaluate("IST", System.currentTimeMillis()));
-//     }
+     public static void main(String[] args) {
+            FindOffset fo=new FindOffset();
+            System.out.println("Europe/Berlin : Offset="+fo.evaluate("Europe/Berlin", System.currentTimeMillis()));
+            System.out.println("Asia/Kolkata : Offset="+fo.evaluate("Asia/Kolkata", System.currentTimeMillis()));
+            System.out.println("PST : Offset="+fo.evaluate("PST", System.currentTimeMillis()));
+            System.out.println("IST : Offset="+fo.evaluate("IST", System.currentTimeMillis()));
+     }
 }
  
 /*
